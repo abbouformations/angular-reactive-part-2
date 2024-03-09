@@ -1,0 +1,40 @@
+<div class="container">
+  <label
+    >enter email :
+    <input type="text" [formControl]="adresse" />
+    <div
+      *ngIf="
+        adresse.touched && adresse.errors != null && adresse.errors['required']
+      "
+      class="alert alert-danger"
+    >
+      <p>mail obligatoire</p>
+    </div>
+    <div
+      *ngIf="
+        adresse.touched && adresse.errors != null && adresse.errors['maxlength']
+      "
+      class="alert alert-danger"
+    >
+      <p>mail doit être composé de 10 maximum</p>
+    </div>
+    <p>Donnée saisie : {{ adresse.value }}</p>
+  </label>
+  <br />
+  <label
+    >enter comment :
+    <input type="text" [formControl]="comment" />
+    <div
+      *ngIf="
+        comment.touched && comment.errors != null && comment.errors['required']
+      "
+      class="alert alert-danger"
+    >
+      <p>commentaire obligatoire</p>
+    </div>
+    <p>Donnée saisie : {{ comment.value }}</p>
+  </label>
+  <br />
+  <button (click)="update()">Modifier</button>
+  <button (click)="updateControles()">Modifier les contrôles</button>
+</div>

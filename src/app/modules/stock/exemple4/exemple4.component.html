@@ -1,0 +1,46 @@
+<form [formGroup]="form">
+  <div formArrayName="articles">
+    <div
+      *ngFor="let aa of articles.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <label>
+        ID : <input type="text" formControlName="id" /> Description :
+        <input type="text" formControlName="description" /> Prix :
+        <input type="text" formControlName="prix" /> Quantité :
+        <input type="text" formControlName="quantite" />
+        <div
+          *ngIf="prix(i).touched && prix(i).invalid"
+          class="alert alert-danger"
+        >
+          <div
+            *ngIf="prix(i) != null && prix(i).errors != null && 
+    prix(i).errors?.['required']"
+          >
+            <p>Prix obligatoire</p>
+          </div>
+        </div>
+        <button type="submit" (click)="removeArticle(i)">Supprimer</button>
+        <button type="submit" (click)="addValidatorRule(i)">Add Rule</button>
+      </label>
+    </div>
+    <br />
+    <button (click)="addArticle()">Ajouter</button>
+    <button (click)="save()">save</button>
+    {{ form.value | json }}
+    <div *ngIf="!!mesarticles">
+      Liste des articles :
+      <div *ngFor="let article of mesarticles">
+        <p>
+          {{ article.id }} - {{ article.description }} - {{ article.prix }} -
+          {{ article.quantite }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/test">Visiter ce lien</a>
+    </li>
+  </div>
+</form>

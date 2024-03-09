@@ -1,0 +1,110 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <label
+    >Entrer l'Id :
+    <input type="text" formControlName="id" />
+    <div
+      *ngIf="articles['id'].touched && articles['id'].invalid"
+      class="alert alert-danger"
+    >
+      <div
+        *ngIf="
+          articles['id'].errors != null && articles['id'].errors['required']
+        "
+      >
+        <p>Id obligatoire</p>
+      </div>
+      <div
+        *ngIf="
+          articles['id'].errors != null && articles['id'].errors['minlength']
+        "
+      >
+        <p>Id doit être composé de 02 charactères</p>
+      </div>
+    </div>
+  </label>
+  <br />
+  <label
+    >Entrer la description :
+    <input type="text" formControlName="description" />
+    <div
+      *ngIf="articles['description'].touched && articles['description'].invalid"
+      class="alert alert-danger"
+    >
+      <div
+        *ngIf="
+          articles['description'].errors != null &&
+          articles['description'].errors['required']
+        "
+      >
+        <p>description obligatoire</p>
+      </div>
+    </div>
+  </label>
+  <br />
+  <label
+    >Entrer le prix :
+    <input type="text" formControlName="prix" />
+    <div
+      *ngIf="articles['prix'].touched && articles['prix'].invalid"
+      class="alert alert-danger"
+    >
+      <div
+        *ngIf="
+          articles['prix'].errors != null && articles['prix'].errors['required']
+        "
+      >
+        <p>Age obligatoire</p>
+      </div>
+      <div
+        *ngIf="
+          articles['prix'].errors != null && articles['prix'].errors['min']
+        "
+      >
+        <p>L'age minimum est 0</p>
+      </div>
+      <div
+        *ngIf="
+          articles['prix'].errors != null && articles['prix'].errors['max']
+        "
+      >
+        <p>L'age maximum est 10000</p>
+      </div>
+    </div>
+  </label>
+  <br />
+  <label
+    >Entrer la quantité :
+    <input type="text" formControlName="quantite" />
+    <div
+      *ngIf="articles['quantite'].touched && articles['quantite'].invalid"
+      class="alert alert-danger"
+    >
+      <div
+        *ngIf="
+          articles['quantite'].errors != null &&
+          articles['quantite'].errors['required']
+        "
+      >
+        <p>Quantité obligatoire</p>
+      </div>
+      <div
+        *ngIf="
+          articles['quantite'].errors != null &&
+          articles['quantite'].errors['min']
+        "
+      >
+        <p>La quantité minimum est 1</p>
+      </div>
+    </div>
+  </label>
+  <button type="submit">save</button>
+  <p>
+    {{ form.value | json }}
+  </p>
+
+  <p></p>
+  <p *ngIf="article && article.id">Id : {{ article.id }}</p>
+  <p *ngIf="article && article.description">Id : {{ article.description }}</p>
+  <p *ngIf="article && article.prix">Id : {{ article.prix }}</p>
+  <p *ngIf="article && article.quantite">Id : {{ article.quantite }}</p>
+</form>

@@ -1,0 +1,17 @@
+.container {
+    text-align: center;
+    }
+    label {
+    text-align: left;
+    }
+    h1 {
+    text-align: center;
+    }
+    .alert{
+    color: white;
+    margin-bottom: 15px;
+    text-align: left;
+    }
+    .alert-danger {
+    background-color: red;
+    }
